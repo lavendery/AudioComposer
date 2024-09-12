@@ -7,6 +7,6 @@
 We propose 
 
 ## Method
-![The overview of UniSep](figures/fig.png)
+![The overview of xxx](figures/fig.png)
 In the following, we will present some samples generated using our proposed xxx.
 
