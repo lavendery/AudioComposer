@@ -1,4 +1,4 @@
-# <center> AudioComposer: Towards Fine-grained Audio Generation with Natural Language Descriptions </center>
+# <center> Towards Fine-grained Audio Generation with Natural Language Descriptions </center>
 
 
 ## Abstract
