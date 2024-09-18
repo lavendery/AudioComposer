@@ -33,6 +33,7 @@ Pitch and energy are divided into three levels: low / normal / high. You can dis
 
 
 ## AudioCaps test set
+The FAD is slightly worse because we did not use the relative pressure-based data augmentation strategies proposed in Tango.
 
 <table>
   <tr>
@@ -41,9 +42,9 @@ Pitch and energy are divided into three levels: low / normal / high. You can dis
     <th colspan="3" style="text-align:center">Objective Metrics</th>
   </tr>
   <tr>
-    <td style="text-align:center">FD</td>
-    <td style="text-align:center">KL</td>
-    <td style="text-align:center">FAD</td>
+    <td style="text-align:center">FD&darr;</td>
+    <td style="text-align:center">KL&darr;</td>
+    <td style="text-align:center">FAD&darr;</td>
   </tr>
   <tr>
     <td><center>AudioLDM-L-Full</center></td>
