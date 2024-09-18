@@ -23,6 +23,7 @@ In the following, we will present some samples generated using our AudioComposer
 ## AudioTPE test set
 
 Pitch and energy are divided into three levels: low / normal / high. You can distinguish the category according to the normal pitch and normal energy of the reference pitch & energy.
+
 | <center> Natural Language Descriptions </center>| <center> Tango2 </center> | <center> Tango+LControl </center>| <center> AudioComposer-S </center>| <center> AudioComposer-L </center>| <center> Ground Turth </center>| <center> Reference Pitch&Energy </center>|
 | -------------------------- | ------------------------- | ------------------------- | ------------------------------ | ----------------------------- | ----------------------- |  ------------- |
 | "Drill, power tool", Start at 0s, End at 2.97s, it has Normal Pitch and Normal Energy. "dog bark" Start at 2.97s, End at 6.15s, it has Normal Pitch and Low Energy. "Piano, Keyboard_(musical)" Start at 6.15s, End at 10s, it has Normal pitch and High energy. | <img src="demo_clean/tango2_clean/mix_163.png" width="300"> <br> <audio src="demo_clean/tango2_clean/mix_163.wav" controls preload></audio>  | <img src="demo_clean/v31/mix_163.png" width="300"> <br> <audio src="demo_clean/v31/mix_163.wav" controls preload></audio> | <img src="demo_clean/v8/mix_163.png" width="300"> <br> <audio src="demo_clean/v8/mix_163.wav" controls preload></audio> | <img src="demo_clean/v9/mix_163.png" width="300"> <br> <audio src="demo_clean/v9/mix_163.wav" controls preload></audio>   |  <img src="demo_clean/gt/mix_163.png" width="300"> <br> <audio src="demo_clean/gt/mix_163.wav" controls preload></audio>| Drill: <audio src="demo_clean/refer_normal_pitch_energy/drill.wav" controls preload></audio> <br> dog bark: <audio src="demo_clean/refer_normal_pitch_energy/dog_bark.wav" controls preload></audio> <br> Piano: <audio src="demo_clean/refer_normal_pitch_energy/piano.wav" controls preload></audio> |
@@ -98,6 +99,7 @@ Pitch and energy are divided into three levels: low / normal / high. You can dis
 </table>
 
 AudioCaps Demo:
+
 | <center> Natural Language Descriptions </center>| <center> Tango </center> | <center> AudioComposer-S </center>| <center> AudioComposer-L </center>| <center> Ground Turth </center>|
 | -------------------------- | ------------------------- |------------------------------ | ----------------------------- | ----------------------- |
 | An emergency siren wailing followed by a large truck engine running idle | <audio src="demo_audiocaps/tango/Y6TO9PEGpZcQ.wav" controls preload></audio>  | <audio src="demo_audiocaps/v8/Y6TO9PEGpZcQ.wav" controls preload></audio> | <audio src="demo_audiocaps/v9/Y6TO9PEGpZcQ.wav" controls preload></audio> | <audio src="demo_audiocaps/gt/Y6TO9PEGpZcQ.wav" controls preload></audio> | 
