@@ -22,7 +22,7 @@ In the following, we will present some samples generated using our AudioComposer
 
 ## AudioTPE test set
 
-Pitch and energy are divided into three levels: low / normal / high. You can distinguish the category according to the normal pitch and normal energy of the reference pitch & energy.
+Pitch and energy are divided into three levels: low / normal / high. You can distinguish the category according to the normal pitch and normal energy of the reference pitch & energy
 
 | <center> Natural Language Descriptions </center>| <center> Tango2 </center> | <center> Tango+LControl </center>| <center> AudioComposer-S </center>| <center> AudioComposer-L </center>| <center> Ground Turth </center>| <center> Reference Pitch&Energy </center>|
 | -------------------------- | ------------------------- | ------------------------- | ------------------------------ | ----------------------------- | ----------------------- |  ------------- |
@@ -98,7 +98,7 @@ Pitch and energy are divided into three levels: low / normal / high. You can dis
   </tr>
 </table>
 
-AudioCaps Demo:
+AudioCaps Demo
 
 | <center> Natural Language Descriptions </center>| <center> Tango </center> | <center> AudioComposer-S </center>| <center> AudioComposer-L </center>| <center> Ground Turth </center>|
 | -------------------------- | ------------------------- |------------------------------ | ----------------------------- | ----------------------- |
