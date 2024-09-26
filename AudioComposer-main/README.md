@@ -3,13 +3,12 @@ This repo will contain our official implementation of <strong> AudioComposer </s
 
 ## TODOs
 - [x] Release paper and demo page.
-- [ ] Release pretrained weights.
+- [x] Release pretrained weights.
 - [ ] Release inference code.
 - [ ] Release training code.
 
 ## Pretrained Models
-Coming soon.
-<!-- Models can be downloaded [here](http). -->
+Models can be downloaded [here](https://huggingface.co/lavendery/AudioComposer/tree/main).
 
 ## Installation
 Coming soon.
