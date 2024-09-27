@@ -4,7 +4,7 @@ This repo will contain our official implementation of <strong> AudioComposer </s
 ## TODOs
 - [x] Release paper and demo page.
 - [x] Release pretrained weights.
-- [ ] Release inference code.
+- [x] Release inference code.
 - [ ] Release training code.
 
 ## Pretrained Models
