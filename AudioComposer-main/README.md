@@ -14,6 +14,7 @@ Models can be downloaded [here](https://huggingface.co/lavendery/AudioComposer/t
 ```
 conda create -n audiocomposer python=3.9
 conda activate audiocomposer
+cd AudioComposer
 pip install -r requirements.txt
 
 # infer
