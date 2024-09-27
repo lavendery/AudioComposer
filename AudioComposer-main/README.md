@@ -1,5 +1,5 @@
 # AudioComposer: Towards Fine-grained Audio Generation with Natural Language Descriptions
-This repo will contain our official implementation of <strong> AudioComposer </strong>. [[Demo]](https://lavendery.github.io/AudioComposer/)
+This repo contains our official implementation of <strong> AudioComposer </strong>. [[Demo]](https://lavendery.github.io/AudioComposer/)
 
 ## TODOs
 - [x] Release paper and demo page.
