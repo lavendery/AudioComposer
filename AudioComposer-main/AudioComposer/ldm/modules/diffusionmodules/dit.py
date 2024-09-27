@@ -514,22 +514,22 @@ class MoE(nn.Module):
         })
 
     def forward(self, x, time):
-        orig_shape = x.shape # [B, T, 768]
-        x = x.view(-1, x.shape[-1]) # [N, 768] 按照sample1 sample2 sample3拍平
+        orig_shape = x.shape 
+        x = x.view(-1, x.shape[-1]) 
 
         expert_indices = (time // 250).unsqueeze(1).repeat(1, orig_shape[1])
-        flat_expert_indices = expert_indices.view(-1) # [N] 找到每个expert位置
+        flat_expert_indices = expert_indices.view(-1) 
 
-        # time-moe
+
         y = torch.zeros_like(x)
-        for str_i, expert in self.time_experts.items(): # 找到需要用哪个expert算
+        for str_i, expert in self.time_experts.items(): 
             y[flat_expert_indices == int(str_i)] = expert(x[flat_expert_indices == int(str_i)])
         y = y.view(*orig_shape).to(x)
 
         z = torch.zeros_like(y)
-        # frequency-moe
+
         range = orig_shape[-1] // self.num_freq_experts
-        for str_i, expert in self.freq_experts.items(): # 找到需要用哪个expert算
+        for str_i, expert in self.freq_experts.items():
             idx = int(str_i)
             region = torch.zeros_like(z)
             region[:, :, range * idx: range * (idx+1)] = True
@@ -673,7 +673,7 @@ class DiT(nn.Module):
         x = rearrange(x, 'b c t -> b t c')
         x = self.proj_in(x)
 
-        cap_mask = torch.ones((context.shape[0], context.shape[1]), dtype=torch.int32, device=x.device)  # [B, T] video时一直用非mask
+        cap_mask = torch.ones((context.shape[0], context.shape[1]), dtype=torch.int32, device=x.device) 
         mask = torch.ones((x.shape[0], x.shape[1]), dtype=torch.int32, device=x.device)
 
         t_embedding = self.t_embedder(t)  # [B, 768]

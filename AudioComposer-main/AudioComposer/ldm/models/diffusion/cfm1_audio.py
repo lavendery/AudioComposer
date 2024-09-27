@@ -1,4 +1,3 @@
-from pytorch_memlab import LineProfiler,profile
 import torch
 import torch.nn as nn
 from torchdyn.core import NeuralODE

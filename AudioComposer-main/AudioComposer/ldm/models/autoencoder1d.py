@@ -1,7 +1,3 @@
-"""
-与autoencoder.py的区别在于，autoencoder.py是(B,1,80,T) ->(B,C,80/8,T/8),现在vae要变成(B,80,T) -> (B,80/downsample_c,T/downsample_t)
-"""
-
 import os
 import torch
 import torch.nn as nn
@@ -76,94 +72,8 @@ class AutoencoderKL(pl.LightningModule):
         x = x.to(memory_format=torch.contiguous_format).float()
         return x
 
-    def training_step(self, batch, batch_idx, optimizer_idx):
-        inputs = self.get_input(batch, self.image_key)
-        # print(inputs.shape)
-        reconstructions, posterior = self(inputs)
-
-        if optimizer_idx == 0:
-            # train encoder+decoder+logvar
-            aeloss, log_dict_ae = self.loss(inputs, reconstructions, posterior, optimizer_idx, self.global_step,
-                                            last_layer=self.get_last_layer(), split="train")
-            self.log("aeloss", aeloss, prog_bar=True, logger=True, on_step=True, on_epoch=True)
-            self.log_dict(log_dict_ae, prog_bar=False, logger=True, on_step=True, on_epoch=False)
-            return aeloss
-
-        if optimizer_idx == 1:
-            # train the discriminator
-            discloss, log_dict_disc = self.loss(inputs, reconstructions, posterior, optimizer_idx, self.global_step,
-                                                last_layer=self.get_last_layer(), split="train")
-
-            self.log("discloss", discloss, prog_bar=True, logger=True, on_step=True, on_epoch=True)
-            self.log_dict(log_dict_disc, prog_bar=False, logger=True, on_step=True, on_epoch=False)
-            return discloss
-
-    def validation_step(self, batch, batch_idx):
-        inputs = self.get_input(batch, self.image_key)
-        reconstructions, posterior = self(inputs)
-        aeloss, log_dict_ae = self.loss(inputs, reconstructions, posterior, 0, self.global_step,
-                                        last_layer=self.get_last_layer(), split="val")
-
-        discloss, log_dict_disc = self.loss(inputs, reconstructions, posterior, 1, self.global_step,
-                                            last_layer=self.get_last_layer(), split="val")
-
-        self.log("val/rec_loss", log_dict_ae["val/rec_loss"])
-        self.log_dict(log_dict_ae)
-        self.log_dict(log_dict_disc)
-        return self.log_dict
-
-    def test_step(self, batch, batch_idx):
-        inputs = self.get_input(batch, self.image_key)# inputs shape:(b,mel_len,T)
-        reconstructions, posterior = self(inputs)# reconstructions:(b,mel_len,T)
-        mse_loss = torch.nn.functional.mse_loss(reconstructions,inputs)
-        self.log('test/mse_loss',mse_loss)
-          
-        test_ckpt_path = os.path.basename(self.trainer.tested_ckpt_path)
-        savedir = os.path.join(self.trainer.log_dir,f'output_imgs_{test_ckpt_path}','fake_class')
-        if batch_idx == 0:
-            print(f"save_path is: {savedir}")
-        if not os.path.exists(savedir):
-            os.makedirs(savedir)
-            print(f"save_path is: {savedir}")
-
-        file_names = batch['f_name']
-        # print(f"reconstructions.shape:{reconstructions.shape}",file_names)
-        # reconstructions = (reconstructions + 1)/2 # to mel scale  
-        reconstructions = reconstructions.cpu().numpy() # squuze channel dim
-        for b in range(reconstructions.shape[0]):
-            vname_num_split_index = file_names[b].rfind('_')# file_names[b]:video_name+'_'+num
-            v_n,num = file_names[b][:vname_num_split_index],file_names[b][vname_num_split_index+1:]
-            save_img_path = os.path.join(savedir, f'{v_n}.npy') # f'{v_n}_sample_{num}.npy'   f'{v_n}.npy'
-            np.save(save_img_path,reconstructions[b])
-        
-        return None
-        
-    def configure_optimizers(self):
-        lr = self.learning_rate
-        opt_ae = torch.optim.Adam(list(self.encoder.parameters())+
-                                  list(self.decoder.parameters())+
-                                  list(self.quant_conv.parameters())+
-                                  list(self.post_quant_conv.parameters()),
-                                  lr=lr, betas=(0.5, 0.9))
-        opt_disc = torch.optim.Adam(self.loss.discriminator.parameters(),
-                                    lr=lr, betas=(0.5, 0.9))
-        return [opt_ae, opt_disc], []
-
     def get_last_layer(self):
         return self.decoder.conv_out.weight
-
-    @torch.no_grad()
-    def log_images(self, batch, only_inputs=False, **kwargs):
-        log = dict()
-        x = self.get_input(batch, self.image_key)
-        x = x.to(self.device)
-        
-        if not only_inputs:
-            xrec, posterior = self(x)
-            log["samples"] = self.decode(torch.randn_like(posterior.sample())).unsqueeze(1) # (b,1,H,W)
-            log["reconstructions"] = xrec.unsqueeze(1)
-        log["inputs"] = x.unsqueeze(1)
-        return log
 
 
 def Normalize(in_channels, num_groups=32):

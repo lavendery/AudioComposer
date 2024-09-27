@@ -1,5 +1,4 @@
 import os
-from pytorch_memlab import LineProfiler,profile
 import torch
 import torch.nn as nn
 import numpy as np
@@ -8,6 +7,7 @@ from ldm.util import default, instantiate_from_config
 from ldm.modules.distributions.distributions import DiagonalGaussianDistribution
 from ldm.models.diffusion.ddpm import DDPM, disabled_train
 from preprocess.NAT_mel import MelNet
+from ldm.models.autoencoder import VQModelInterface
 
 __conditioning_keys__ = {'concat': 'c_concat',
                          'crossattn': 'c_crossattn',
@@ -33,7 +33,7 @@ class LatentDiffusion_audio(DDPM):
         self.num_timesteps_cond = default(num_timesteps_cond, 1)
         self.scale_by_std = scale_by_std
         assert self.num_timesteps_cond <= kwargs['timesteps']
-        # for backwards compatibility after implementation of DiffusionWrapper
+        
         if conditioning_key is None:
             conditioning_key = 'concat' if concat_mode else 'crossattn'
         if cond_stage_config == '__is_unconditional__':

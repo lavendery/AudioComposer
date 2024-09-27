@@ -45,7 +45,7 @@ model:
       params:
         embed_dim: 20
         monitor: val/rec_loss
-        ckpt_path: configs/model/vae/epoch=000032.ckpt
+        ckpt_path: configs/model/vae  # vae
         ddconfig:
           double_z: true
           in_channels: 80
@@ -68,6 +68,6 @@ model:
     cond_stage_config:
       target: ldm.modules.encoders.modules.FrozenFLANEmbedder
       params:
-        weights_path: configs/model/
+        weights_path: configs/model/   # t5
         max_length: 512
 
