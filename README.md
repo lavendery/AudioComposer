@@ -22,3 +22,16 @@ pip install -r requirements.txt
 bash test.sh
 ```
 
+
+## Citation
+```bibtex
+@misc{wang2024audiocomposerfinegrainedaudiogeneration,
+      title={AudioComposer: Towards Fine-grained Audio Generation with Natural Language Descriptions}, 
+      author={Yuanyuan Wang and Hangting Chen and Dongchao Yang and Zhiyong Wu and Helen Meng and Xixin Wu},
+      year={2024},
+      eprint={2409.12560},
+      archivePrefix={arXiv},
+      primaryClass={eess.AS},
+      url={https://arxiv.org/abs/2409.12560}, 
+}
+```
