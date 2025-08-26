@@ -1,5 +1,16 @@
-# <center> Towards Fine-grained Audio Generation with Natural Language Descriptions </center>
+<p align="center">
 
+  <h2 align="center"> AudioComposer: Towards Fine-grained Audio Generation with Natural Language Descriptions </h2>
+  <p align="center">
+        <a href="https://arxiv.org/abs/2409.12560">
+        <img src='https://img.shields.io/badge/arXiv-red' alt='Paper Arxiv'></a> &nbsp; &nbsp;  &nbsp; 
+        <a href='https://lavendery.github.io/AudioComposer/'>
+        <img src='https://img.shields.io/badge/Project_Page-green' alt='Project Page'></a> &nbsp;&nbsp; &nbsp; 
+        <a href="https://github.com/lavendery/AudioComposer/tree/main">
+          <img src="https://img.shields.io/badge/Code-black?logo=github&logoColor=white" alt="Code">
+        </a>&nbsp;&nbsp; &nbsp; 
+  </p>
+</p>
 
 ## Abstract
 Current Text-to-audio (TTA) models mainly use coarse text descriptions as inputs to generate audio, which hinders models from generating audio with fine-grained control of content and style. Some studies try to improve the granularity by incorporating additional frame-level conditions or control networks. However, this usually leads to complex system design and difficulties due to the requirement for reference frame-level conditions. To address these challenges, we propose AudioComposer, a novel TTA generation framework that relies solely on natural language descriptions (NLDs) to provide both content specification and style control information. To further enhance audio generative modeling, we employ flow-based diffusion transformers with the cross-attention mechanism to incorporate text descriptions effectively into audio generation processes, which can not only simultaneously consider the content and style information in the text inputs, but also accelerate generation compared to other architectures. Furthermore, we propose a novel and comprehensive automatic data simulation pipeline to construct data with fine-grained text descriptions, which significantly alleviates the problem of data scarcity in the area. Experiments demonstrate the effectiveness of our framework using solely NLDs as inputs for content specification and style control. The generation quality and controllability surpass stateof-the-art TTA models, even with a smaller model size. 
