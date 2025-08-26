@@ -29,6 +29,8 @@ Models can be downloaded [here](https://huggingface.co/lavendery/AudioComposer/t
 wget https://huggingface.co/lavendery/AudioComposer/resolve/main/audio_composer.ckpt?download=true
 ```
 
+We use the same BIGVGAN vocoder weights as [Make-An-Audio-2](https://github.com/bytedance/Make-An-Audio-2?tab=readme-ov-file).
+
 ## Installation
 ```
 git clone https://github.com/lavendery/AudioComposer.git
