@@ -5,7 +5,7 @@ This repo contains our official implementation of <strong> AudioComposer </stron
 - [x] Release paper and demo page.
 - [x] Release pretrained weights.
 - [x] Release inference code.
-- [ ] Release training code.
+- [x] Release training code.
 
 ## Pretrained Models
 Models can be downloaded [here](https://huggingface.co/lavendery/AudioComposer/tree/main).
@@ -15,14 +15,17 @@ wget https://huggingface.co/lavendery/AudioComposer/resolve/main/audio_composer.
 
 ## Installation
 ```
+git clone https://github.com/lavendery/AudioComposer.git
 conda create -n audiocomposer python=3.9
 conda activate audiocomposer
 
-git clone https://github.com/lavendery/AudioComposer.git
 cd AudioComposer-main/AudioComposer
 pip install -r requirements.txt
 
-# infer
+# Train
+bash train.sh
+
+# Inference
 bash test.sh
 ```
 

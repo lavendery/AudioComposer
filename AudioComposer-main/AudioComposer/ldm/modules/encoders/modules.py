@@ -1,9 +1,6 @@
-import os.path
-
 import torch
 import torch.nn as nn
-from transformers import T5Tokenizer, T5EncoderModel
-
+from transformers import T5Tokenizer, T5EncoderModel, AutoTokenizer
 
 
 class AbstractEncoder(nn.Module):
@@ -23,7 +20,8 @@ class FrozenFLANEmbedder(AbstractEncoder):
     """Uses the T5 transformer encoder for text"""
     def __init__(self, weights_path, version="google/flan-t5-large", device="cuda", max_length=512, freeze=True):  # others are google/t5-v1_1-xl and google/t5-v1_1-xxl
         super().__init__()
-
+        # self.tokenizer = T5Tokenizer.from_pretrained(version)
+        # self.transformer = T5EncoderModel.from_pretrained(version)
         from transformers import AutoTokenizer
         self.tokenizer = AutoTokenizer.from_pretrained(weights_path + version)
         self.transformer = T5EncoderModel.from_pretrained(weights_path + version)
@@ -42,8 +40,10 @@ class FrozenFLANEmbedder(AbstractEncoder):
     def forward(self, text):
         batch_encoding = self.tokenizer(text, truncation=True, max_length=self.max_length, return_length=True, 
                                         return_overflowing_tokens=False, padding="max_length", return_tensors="pt")
-        tokens = batch_encoding["input_ids"].to(self.device)
+        # batch_encoding = self.tokenizer(text, truncation=True, max_length=self.max_length, padding=True, return_tensors="pt")
+        tokens = batch_encoding["input_ids"].to(self.device)# tango的flanT5是不定长度的batch，这里做成定长的batch
         
+        # outputs = self.transformer(input_ids=tokens) 
         attention_mask = batch_encoding.attention_mask.to(self.device)
         outputs = self.transformer(input_ids=tokens, attention_mask=attention_mask) 
 

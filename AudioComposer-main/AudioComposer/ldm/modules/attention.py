@@ -10,18 +10,10 @@ def exists(val):
     return val is not None
 
 
-def uniq(arr):
-    return{el: True for el in arr}.keys()
-
-
 def default(val, d):
     if exists(val):
         return val
     return d() if isfunction(d) else d
-
-
-def max_neg_value(t):
-    return -torch.finfo(t.dtype).max
 
 
 def init_(tensor):
@@ -60,6 +52,19 @@ class FeedForward(nn.Module):
 
     def forward(self, x):
         return self.net(x)
+
+
+def zero_module(module):
+    """
+    Zero out the parameters of a module and return it.
+    """
+    for p in module.parameters():
+        p.detach().zero_()
+    return module
+
+
+def Normalize(in_channels):
+    return torch.nn.GroupNorm(num_groups=32, num_channels=in_channels, eps=1e-6, affine=True)
 
 
 class LinearAttention(nn.Module):
