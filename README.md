@@ -29,7 +29,11 @@ Models can be downloaded [here](https://huggingface.co/lavendery/AudioComposer/t
 wget https://huggingface.co/lavendery/AudioComposer/resolve/main/audio_composer.ckpt?download=true
 ```
 
-We use the same BIGVGAN vocoder weights as [Make-An-Audio-2](https://github.com/bytedance/Make-An-Audio-2?tab=readme-ov-file). You can download them and then put them into AudioComposer-main/AudioComposer/configs/model/bigvnat/.
+We use the same BIGVGAN vocoder weights as [Make-An-Audio-2](https://github.com/bytedance/Make-An-Audio-2?tab=readme-ov-file). You can download them and then put them into 'AudioComposer-main/AudioComposer/configs/model/bigvnat/'.
+
+We also use the same Mel-VAE checkpoint as Make-An-Audio-2, You can download them from [here](https://www.modelscope.cn/datasets/lavendery/epoch/resolve/master/epoch%3D000032.ckpt) and put them into 'configs/model/vae/', please citation [Make-An-Audio-2](https://github.com/bytedance/Make-An-Audio-2?tab=readme-ov-file) if you use these checkpoints.
+
+Additionally, you need to download [google/flan-t5-large](https://huggingface.co/google/flan-t5-large) model and then put them into 'configs/model/google/flan-t5-large model'.
 
 ## Installation
 ```
